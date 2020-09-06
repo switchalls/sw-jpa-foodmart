@@ -16,8 +16,15 @@ spring.datasource.password=HopefullyProspectiveDevsDontBreakMe
 
 ## Solution Steps
 
+Simple database structure. Use JPA (OR mapping) to access data.
+
 1. Created `maven` project for `springboot` application
-1. Manually analyse database
+1. Manually analyse database (see below)
+1. Create JPA entities based on database analysis
+1. Create database schema (see below)
+1. Create JPA test suite
+
+### Database analyse
 
 ```
 $ mysql foodmart -h 35.187.11.81 -P 3306 --user=technical_test --password=HopefullyProspectiveDevsDontBreakMe
@@ -63,7 +70,7 @@ mysql> desc employee;
 | management_role | varchar(30)   | YES  |     | NULL    |       |
 +-----------------+---------------+------+-----+---------+-------+
 17 rows in set (0.02 sec)
-
+ 
 mysql> desc position;
 +-----------------+---------------+------+-----+---------+-------+
 | Field           | Type          | Null | Key | Default | Extra |
@@ -77,3 +84,19 @@ mysql> desc position;
 +-----------------+---------------+------+-----+---------+-------+
 6 rows in set (0.03 sec)
 ```
+
+### Create database schema
+
+Instruct spring to create a database schema (based on JPA entities) by:
+
+Setting the following in `jpa.properties`
+
+```
+spring.jpa.properties.javax.persistence.schema-generation.scripts.action=create
+spring.jpa.properties.javax.persistence.schema-generation.scripts.create-target=schema.sql
+spring.jpa.properties.javax.persistence.schema-generation.scripts.create-source=metadata
+```
+
+Run the application
+
+Copy `/schema.sql` into `src/test/resources`

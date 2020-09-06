@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+
+    <department department_id="1" /> <!-- null values only -->
+    <department department_id="2" department_description="test_department" />
+
+</dataset>
