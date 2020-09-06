@@ -1,5 +1,6 @@
 package sw.matilion.foodmart.dao;
 
+import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.nullValue;
@@ -23,6 +24,10 @@ import sw.matilion.foodmart.models.matchers.PositionMatcher;
 public class EmployeeRepositoryTest extends AbstractJpaRepositoryTest {
 
     // TODO - Create EmployeeMatcher
+
+    private static final String DEGREE_EDUCATION = "degree";
+    private static final String SCIENCE_DEPARTMENT = "Science";
+    private static final String WEEKLY_PAY = "weekly";
 
     @Autowired
     private EmployeeRepository testSubject;
@@ -51,24 +56,75 @@ public class EmployeeRepositoryTest extends AbstractJpaRepositoryTest {
         assertThat(headTeacher.getLastName(), equalTo("Head"));
         assertThat(headTeacher.getSupervisor(), nullValue(Employee.class));
 
-        assertThat(headTeacher.getDepartment(), DepartmentMatcher.of()
-                .withDescription("Science"));
-
         assertThat(headTeacher.getPosition(), PositionMatcher.of()
                 .withPayType("monthly")
                 .withTitle("God"));
+
+        final Department scienceDepartment = headTeacher.getDepartment();
+        assertThat(scienceDepartment, DepartmentMatcher.of()
+                .withDescription(SCIENCE_DEPARTMENT));
 
         final Employee teacher = result.get(2);
         assertThat(teacher.getId(), equalTo(3));
         assertThat(teacher.getFullName(), equalTo("John Doe"));
         assertThat(teacher.getFirstName(), equalTo("John"));
         assertThat(teacher.getLastName(), equalTo("Doe"));
-        assertThat(teacher.getDepartment(), sameInstance(headTeacher.getDepartment()));
+        assertThat(teacher.getDepartment(), sameInstance(scienceDepartment));
         assertThat(teacher.getSupervisor(), sameInstance(headTeacher));
 
         assertThat(teacher.getPosition(), PositionMatcher.of()
-                .withPayType("weekly")
+                .withPayType(WEEKLY_PAY)
                 .withTitle("Teacher"));
+    }
+
+    @Test
+    public void shouldFindByScienceDepartment() {
+        // Given
+
+        // When
+        final List<Employee> result = this.testSubject.findByDepartmentDescription(SCIENCE_DEPARTMENT);
+
+        // Then
+        assertThat(result, hasSize(2));
+    }
+
+    @Test
+    public void shouldFindNothingWhenWrongDepartment() {
+        // Given
+
+        // When
+        final List<Employee> result = this.testSubject.findByDepartmentDescription(SCIENCE_DEPARTMENT + "xxx");
+
+        // Then
+        assertThat(result, empty());
+    }
+
+    @Test
+    public void shouldFindByEducationLevel() {
+        // Given
+
+        // When
+        final List<Employee> result = this.testSubject.findByEducationLevel(DEGREE_EDUCATION);
+
+        // Then
+        assertThat(result, hasSize(1));
+
+        final Employee teacher = result.get(0);
+        assertThat(teacher.getId(), equalTo(3));
+    }
+
+    @Test
+    public void shouldFindByPayType() {
+        // Given
+
+        // When
+        final List<Employee> result = this.testSubject.findByPositionPayType(WEEKLY_PAY);
+
+        // Then
+        assertThat(result, hasSize(1));
+
+        final Employee teacher = result.get(0);
+        assertThat(teacher.getId(), equalTo(3));
     }
 
 }

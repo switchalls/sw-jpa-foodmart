@@ -11,11 +11,13 @@
     <employee employee_id="2"
         full_name="Big Head" first_name="Big" last_name="Head"
         position_id="1" department_id="1"
+        education_level="masters"
         />
 
     <employee employee_id="3"
         full_name="John Doe" first_name="John" last_name="Doe"
         position_id="2" department_id="1" supervisor_id="2"
+        education_level="degree"
         />
 
 </dataset>

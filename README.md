@@ -23,6 +23,7 @@ Simple database structure. Use JPA (OR mapping) to access data.
 1. Create JPA entities based on database analysis
 1. Create database schema (see below)
 1. Create JPA test suite
+1. Added search criteria to JPA repositories
 
 ### Database analyse
 
