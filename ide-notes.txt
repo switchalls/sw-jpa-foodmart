@@ -1,0 +1,7 @@
+Note that you can choose to open an IDE in offline or in-browser online mode. 
+In offline mode you can clone the project locally and later push the changes online to submit your solution. 
+You can switch between the IDE's offline and online modes during the test.    
+
+To copy the given project and work locally, click "Start with Local IDE" in the browser when opening the test.   
+
+See https://support.hackerrank.com/hc/en-us/articles/360000471247-Front-end-Back-end-Full-stack-IDE-FAQs for some frequently asked questions about the IDE.
