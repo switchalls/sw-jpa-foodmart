@@ -24,6 +24,7 @@ Simple database structure. Use JPA (OR mapping) to access data.
 1. Create database schema (see below)
 1. Create JPA test suite
 1. Added search criteria to JPA repositories
+1. Fixed schema error ; use `java.math.BigDecimal` for { `min_scale`, `max_scale` }
 
 ### Database analyse
 
@@ -101,3 +102,14 @@ spring.jpa.properties.javax.persistence.schema-generation.scripts.create-source=
 Run the application
 
 Copy `/schema.sql` into `src/test/resources`
+
+### Schema validation errors
+
+Error when connecting to `real` database:
+
+```
+Caused by: javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.tool.schema.spi.SchemaManagementException: Schema-validation: wrong column type encountered in column [max_scale] in table [position]; found [decimal (Types#DECIMAL)], but expecting [integer (Types#INTEGER)]
+```
+
+Use `java.math.BigDecimal` for { `min_scale`, `max_scale` }
+

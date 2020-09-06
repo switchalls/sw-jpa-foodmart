@@ -1,5 +1,7 @@
 package sw.matilion.foodmart.models;
 
+import java.math.BigDecimal;
+
 import javax.annotation.Nullable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,10 +26,10 @@ public class Position {
     private String payType;
 
     @Column(name = "min_scale")
-    private Integer minScale;
+    private BigDecimal minScale;
 
     @Column(name = "max_scale")
-    private Integer maxScale;
+    private BigDecimal maxScale;
 
     @Column(name = "management_role")
     private String managementRole;
@@ -47,12 +49,12 @@ public class Position {
     }
 
     @Nullable
-    public Integer getMinScale() {
+    public BigDecimal getMinScale() {
         return minScale;
     }
 
     @Nullable
-    public Integer getMaxScale() {
+    public BigDecimal getMaxScale() {
         return maxScale;
     }
 
