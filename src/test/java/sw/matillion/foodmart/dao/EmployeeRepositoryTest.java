@@ -1,4 +1,4 @@
-package sw.matilion.foodmart.dao;
+package sw.matillion.foodmart.dao;
 
 import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.equalTo;
@@ -15,11 +15,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 
-import sw.matilion.foodmart.models.Department;
-import sw.matilion.foodmart.models.Employee;
-import sw.matilion.foodmart.models.Position;
-import sw.matilion.foodmart.models.matchers.DepartmentMatcher;
-import sw.matilion.foodmart.models.matchers.PositionMatcher;
+import sw.matillion.foodmart.models.Department;
+import sw.matillion.foodmart.models.Employee;
+import sw.matillion.foodmart.models.Position;
+import sw.matillion.foodmart.models.matchers.DepartmentMatcher;
+import sw.matillion.foodmart.models.matchers.PositionMatcher;
 
 @DatabaseSetup("/database/employee.xml")
 public class EmployeeRepositoryTest extends AbstractJpaRepositoryTest {

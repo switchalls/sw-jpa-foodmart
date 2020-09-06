@@ -1,4 +1,4 @@
-package sw.matilion.foodmart.services;
+package sw.matillion.foodmart.services;
 
 import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.equalTo;
@@ -20,9 +20,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import sw.matilion.foodmart.dao.EmployeeRepository;
-import sw.matilion.foodmart.models.Employee;
-import sw.matilion.foodmart.services.EmployeeSearcher.Type;
+import sw.matillion.foodmart.dao.EmployeeRepository;
+import sw.matillion.foodmart.models.Employee;
+import sw.matillion.foodmart.services.EmployeeSearcher.Type;
 
 @RunWith(MockitoJUnitRunner.class)
 public class EmployeeSearcherTest {

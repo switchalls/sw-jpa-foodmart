@@ -1,4 +1,4 @@
-package sw.matilion.foodmart.services;
+package sw.matillion.foodmart.services;
 
 import java.io.PrintStream;
 import java.util.Arrays;
@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import sw.matilion.foodmart.models.Employee;
+import sw.matillion.foodmart.models.Employee;
 
 @Component
 public class EmployeeWriter {

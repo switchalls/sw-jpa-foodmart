@@ -1,4 +1,4 @@
-package sw.matilion.foodmart;
+package sw.matillion.foodmart;
 
 import java.io.PrintStream;
 import java.util.List;
@@ -9,10 +9,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
-import sw.matilion.foodmart.models.Employee;
-import sw.matilion.foodmart.services.EmployeeSearcher;
-import sw.matilion.foodmart.services.EmployeeSearcher.Type;
-import sw.matilion.foodmart.services.EmployeeWriter;
+import sw.matillion.foodmart.models.Employee;
+import sw.matillion.foodmart.services.EmployeeSearcher;
+import sw.matillion.foodmart.services.EmployeeWriter;
+import sw.matillion.foodmart.services.EmployeeSearcher.Type;
 
 @SpringBootApplication
 @ComponentScan

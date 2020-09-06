@@ -1,4 +1,4 @@
-package sw.matilion.foodmart.dao;
+package sw.matillion.foodmart.dao;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 
-import sw.matilion.foodmart.models.Position;
+import sw.matillion.foodmart.models.Position;
 
 @DatabaseSetup("/database/position.xml")
 public class PositionRepositoryTest extends AbstractJpaRepositoryTest {

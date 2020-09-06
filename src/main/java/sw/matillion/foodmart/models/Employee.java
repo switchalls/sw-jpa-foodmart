@@ -1,4 +1,4 @@
-package sw.matilion.foodmart.models;
+package sw.matillion.foodmart.models;
 
 import javax.annotation.Nullable;
 import javax.persistence.Column;
