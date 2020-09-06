@@ -8,6 +8,7 @@ import static org.hamcrest.Matchers.sameInstance;
 import static org.junit.Assert.assertThat;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -119,6 +120,60 @@ public class EmployeeRepositoryTest extends AbstractJpaRepositoryTest {
 
         // When
         final List<Employee> result = this.testSubject.findByPositionPayType(WEEKLY_PAY);
+
+        // Then
+        assertThat(result, hasSize(1));
+
+        final Employee teacher = result.get(0);
+        assertThat(teacher.getId(), equalTo(3));
+    }
+
+    @Test
+    public void shouldFindEmployeeWhenUsingAndExpression() {
+        // Given
+
+        // When
+        final List<Employee> result = this.testSubject.findByDepartmentDescriptionAndEducationLevelAndPositionPayType(
+                Optional.of(SCIENCE_DEPARTMENT),
+                Optional.of(DEGREE_EDUCATION),
+                Optional.of(WEEKLY_PAY));
+
+        // Then
+        assertThat(result, hasSize(1));
+
+        final Employee teacher = result.get(0);
+        assertThat(teacher.getId(), equalTo(3));
+    }
+
+    @Test
+    public void shouldFindEmployeeWhenUsingOrExpression() {
+        // Given
+
+        // When
+        final List<Employee> result = this.testSubject.findByDepartmentDescriptionOrEducationLevelOrPositionPayType(
+                Optional.empty(),
+                Optional.empty(),
+                Optional.of(WEEKLY_PAY));
+
+        // Then
+        assertThat(result, hasSize(2));
+
+        final Employee headTeacher = result.get(0);
+        assertThat(headTeacher.getId(), equalTo(1));
+
+        final Employee teacher = result.get(1);
+        assertThat(teacher.getId(), equalTo(3));
+    }
+
+    @Test
+    public void shouldFindEmployeeWhenUsingLikeExpression() {
+        // Given
+
+        // When
+        final List<Employee> result = this.testSubject.findByDepartmentDescriptionLikeAndEducationLevelLikeAndPositionPayTypeLike(
+                "%",
+                "%",
+                WEEKLY_PAY);
 
         // Then
         assertThat(result, hasSize(1));

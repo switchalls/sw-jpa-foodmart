@@ -1,6 +1,6 @@
 # Matilion Senior Developer Test
 
-## Test Instructions
+## HackerRank Instructions
 
 Write a command line Java program that allows the user to specify a department, pay-type and education level, and then connects to the shared database given below and runs a query with those options. The program should then display the results of the query.
 
@@ -14,6 +14,75 @@ spring.datasource.username=technical_test
 spring.datasource.password=HopefullyProspectiveDevsDontBreakMe
 ```
 
+## Running Application
+
+Usage:
+
+```
+$ run.sh
+Usage: [option] value
+Options:
+--pay, eg. Monthly
+--education, eg. Graduate Degree
+--department, eg. HQ General Management
+```
+
+Example searches:
+
+```
+$ ./run.sh --pay Monthly
+$ ./run.sh --education "Graduate Degree"
+$ ./run.sh --department "Store Management"
+```
+
+## Final Thoughts
+
+Over the years, I have come to prefer JPA to direct JDBC access. JPA provides a more OO style.
+
+You can use spring's `JdbcTemplate` with `RowMapper`, but it feels a bit clunky for 2020 !!
+
+Using JPA to construct the test database schema (from entities) was a mistake.
+
+Although easy to do, I missed the need to use `BigDecimal` for `Type#DECIMAL`.
+
+Perhaps I should have used `mysqldump`, eg.
+
+```
+$ mysqldump -u root -p --no-data dbname > schema.sql
+```
+
+Wasn't sure if all 3 options were needed in a single query?
+
+So ... extended the `EmployeeRepository` with new search queries, ie.
+
+```
+List<Employee> findByDepartmentDescriptionAndEducationLevelAndPositionPayType(
+        Optional<String> name,
+        Optional<String> level,
+        Optional<String> type);
+
+List<Employee> findByDepartmentDescriptionOrEducationLevelOrPositionPayType(
+        Optional<String> name,
+        Optional<String> level,
+        Optional<String> type);
+
+List<Employee> findByDepartmentDescriptionLikeAndEducationLevelLikeAndPositionPayTypeLike(
+        String name,
+        String level,
+        String type);
+```
+
+The `And` and `Or` queries did not yield the correct results. `Optional.empty()` matches `NULL`.
+
+An alternative would be to use `LIKE` (see last method). Use `%` (match anything) when no value is provided for a specific field, eg.
+
+```
+final List<Employee> result = this.testSubject.findByDepartmentDescriptionLikeAndEducationLevelLikeAndPositionPayTypeLike(
+        "%",
+        "%",
+        WEEKLY_PAY);
+```
+
 ## Solution Steps
 
 Simple database structure. Use JPA (OR mapping) to access data.
@@ -25,6 +94,8 @@ Simple database structure. Use JPA (OR mapping) to access data.
 1. Create JPA test suite
 1. Added search criteria to JPA repositories
 1. Fixed schema error ; use `java.math.BigDecimal` for { `min_scale`, `max_scale` }
+1. Added search routines
+1. Experimented with `findByDepartmentDescriptionLikeAndEducationLevelLikeAndPositionPayTypeLike` using test suites
 
 ### Database analyse
 
