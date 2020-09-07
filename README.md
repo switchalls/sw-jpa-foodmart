@@ -53,34 +53,17 @@ $ mysqldump -u root -p --no-data dbname > schema.sql
 
 Wasn't sure if all 3 options were needed in a single query?
 
-So ... extended the `EmployeeRepository` with new search queries, ie.
+Added example of Spring's [query by example](https://www.baeldung.com/spring-data-query-by-example) to `EmployeeRepositoryTest`, eg.
 
 ```
-List<Employee> findByDepartmentDescriptionAndEducationLevelAndPositionPayType(
-        Optional<String> name,
-        Optional<String> level,
-        Optional<String> type);
+final Department exampleDepartment = new Department();
+exampleDepartment.setDescription(SCIENCE_DEPARTMENT);
 
-List<Employee> findByDepartmentDescriptionOrEducationLevelOrPositionPayType(
-        Optional<String> name,
-        Optional<String> level,
-        Optional<String> type);
+final Employee probe = new Employee();
+probe.setDepartment(exampleDepartment);
+probe.setEducationLevel(DEGREE_EDUCATION);
 
-List<Employee> findByDepartmentDescriptionLikeAndEducationLevelLikeAndPositionPayTypeLike(
-        String name,
-        String level,
-        String type);
-```
-
-The `And` and `Or` queries did not yield the correct results. `Optional.empty()` matches `NULL`.
-
-An alternative would be to use `LIKE` (see last method). Use `%` (match anything) when no value is provided for a specific field, eg.
-
-```
-final List<Employee> result = this.testSubject.findByDepartmentDescriptionLikeAndEducationLevelLikeAndPositionPayTypeLike(
-        "%",
-        "%",
-        WEEKLY_PAY);
+final List<Employee> result = this.testSubject.findAll(Example.of(probe, Employee.IGNORE_IDS));
 ```
 
 ## Solution Steps
@@ -89,13 +72,13 @@ Simple database structure. Use JPA (OR mapping) to access data.
 
 1. Created `maven` project for `springboot` application
 1. Manually analyse database (see below)
-1. Create JPA entities based on database analysis
-1. Create database schema (see below)
-1. Create JPA test suite
-1. Added search criteria to JPA repositories
-1. Fixed schema error ; use `java.math.BigDecimal` for { `min_scale`, `max_scale` }
-1. Added search routines
-1. Experimented with `findByDepartmentDescriptionLikeAndEducationLevelLikeAndPositionPayTypeLike` using test suites
+1. Create JPA entities
+1. Create schema for test database (see below)
+1. Create JPA test suite using `dbUnit`
+1. Added basic `Employee` search methods
+1. Fix JPA schema validation error (see below)
+1. Added services and `main`
+1. Experiment with `query by example` (see `EmployeeRepositoryTest`)
 
 ### Database analyse
 
@@ -158,11 +141,9 @@ mysql> desc position;
 6 rows in set (0.03 sec)
 ```
 
-### Create database schema
+### Create schema for test database
 
-Instruct spring to create a database schema (based on JPA entities) by:
-
-Setting the following in `jpa.properties`
+Instruct spring to create database schema (from JPA entities) by setting `jpa.properties` values, eg.
 
 ```
 spring.jpa.properties.javax.persistence.schema-generation.scripts.action=create
@@ -170,13 +151,15 @@ spring.jpa.properties.javax.persistence.schema-generation.scripts.create-target=
 spring.jpa.properties.javax.persistence.schema-generation.scripts.create-source=metadata
 ```
 
-Run the application
+Run any JPA test.
 
 Copy `/schema.sql` into `src/test/resources`
 
-### Schema validation errors
+*NB.* Spring automatically creates database when `schema.sql` present on classpath.
 
-Error when connecting to `real` database:
+### Fix JPA schema validation error
+
+Error when connecting to `live` database:
 
 ```
 Caused by: javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.tool.schema.spi.SchemaManagementException: Schema-validation: wrong column type encountered in column [max_scale] in table [position]; found [decimal (Types#DECIMAL)], but expecting [integer (Types#INTEGER)]

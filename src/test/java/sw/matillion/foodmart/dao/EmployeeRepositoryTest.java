@@ -12,6 +12,7 @@ import java.util.Optional;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 
@@ -134,9 +135,9 @@ public class EmployeeRepositoryTest extends AbstractJpaRepositoryTest {
 
         // When
         final List<Employee> result = this.testSubject.findByDepartmentDescriptionAndEducationLevelAndPositionPayType(
-                Optional.of(SCIENCE_DEPARTMENT),
-                Optional.of(DEGREE_EDUCATION),
-                Optional.of(WEEKLY_PAY));
+                SCIENCE_DEPARTMENT,
+                DEGREE_EDUCATION,
+                WEEKLY_PAY);
 
         // Then
         assertThat(result, hasSize(1));
@@ -146,7 +147,7 @@ public class EmployeeRepositoryTest extends AbstractJpaRepositoryTest {
     }
 
     @Test
-    public void shouldFindEmployeeWhenUsingOrExpression() {
+    public void shouldFindMultipleEmployeesWhenUsingOrExpression() {
         // Given
 
         // When
@@ -158,8 +159,10 @@ public class EmployeeRepositoryTest extends AbstractJpaRepositoryTest {
         // Then
         assertThat(result, hasSize(2));
 
-        final Employee headTeacher = result.get(0);
-        assertThat(headTeacher.getId(), equalTo(1));
+        final Employee employeeWithNulls = result.get(0);
+        assertThat(employeeWithNulls.getId(), equalTo(1));
+        assertThat(employeeWithNulls.getDepartment(), nullValue(Department.class));
+        assertThat(employeeWithNulls.getPosition(), nullValue(Position.class));
 
         final Employee teacher = result.get(1);
         assertThat(teacher.getId(), equalTo(3));
@@ -174,6 +177,50 @@ public class EmployeeRepositoryTest extends AbstractJpaRepositoryTest {
                 "%",
                 "%",
                 WEEKLY_PAY);
+
+        // Then
+        assertThat(result, hasSize(1));
+
+        final Employee teacher = result.get(0);
+        assertThat(teacher.getId(), equalTo(3));
+    }
+
+    @Test
+    public void shouldFindEmployeeWhenUsingQueryByExample_AllFields() {
+        // Given
+        final Department exampleDepartment = new Department();
+        exampleDepartment.setDescription(SCIENCE_DEPARTMENT);
+
+        final Position examplePosition = new Position();
+        examplePosition.setPayType(WEEKLY_PAY);
+
+        final Employee probe = new Employee();
+        probe.setDepartment(exampleDepartment);
+        probe.setEducationLevel(DEGREE_EDUCATION);
+        probe.setPosition(examplePosition);
+
+        // When
+        final List<Employee> result = this.testSubject.findAll(Example.of(probe, Employee.IGNORE_IDS));
+
+        // Then
+        assertThat(result, hasSize(1));
+
+        final Employee teacher = result.get(0);
+        assertThat(teacher.getId(), equalTo(3));
+    }
+
+    @Test
+    public void shouldFindEmployeeWhenUsingQueryByExample_SomeFields() {
+        // Given
+        final Position examplePosition = new Position();
+        examplePosition.setPayType(WEEKLY_PAY);
+
+        final Employee probe = new Employee();
+        probe.setEducationLevel(DEGREE_EDUCATION);
+        probe.setPosition(examplePosition);
+
+        // When
+        final List<Employee> result = this.testSubject.findAll(Example.of(probe, Employee.IGNORE_IDS));
 
         // Then
         assertThat(result, hasSize(1));

@@ -17,16 +17,19 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 
     List<Employee> findByPositionPayType(String type);
 
+    // when all fields
     List<Employee> findByDepartmentDescriptionAndEducationLevelAndPositionPayType(
-            Optional<String> name,
-            Optional<String> level,
-            Optional<String> type);
+            String name,
+            String level,
+            String type);
 
+    // when any field, but Optional.empty() matches null
     List<Employee> findByDepartmentDescriptionOrEducationLevelOrPositionPayType(
             Optional<String> name,
             Optional<String> level,
             Optional<String> type);
 
+    // use '%' when no value provided, but LIKE is slow! ; use Spring's find-by-example instead
     List<Employee> findByDepartmentDescriptionLikeAndEducationLevelLikeAndPositionPayTypeLike(
             String name,
             String level,

@@ -11,9 +11,22 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.data.domain.ExampleMatcher;
+
 @Entity
 @Table(name = "employee")
 public class Employee {
+
+    /**
+     * query-by-example matcher.
+     *
+     * <p>
+     * Ignore identifiers and null values.
+     * </p>
+     */
+    public static final ExampleMatcher IGNORE_IDS = ExampleMatcher.matching()
+            .withIgnorePaths("id", "departmentId", "positionId", "department.id", "position.id")
+            .withIgnoreNullValues(); // default
 
     @Id
     @Column(name = "employee_id")
@@ -86,6 +99,30 @@ public class Employee {
     @Nullable
     public Employee getSupervisor() {
         return supervisor;
+    }
+
+    public void setDepartment(@Nullable Department d) {
+        if (d == null) {
+            this.departmentId = 0;
+        } else {
+            this.departmentId = d.getId();
+        }
+
+        this.department = d;
+    }
+
+    public void setEducationLevel(String level) {
+        this.educationLevel = level;
+    }
+
+    public void setPosition(@Nullable Position p) {
+        if (p == null) {
+            this.positionId = 0;
+        } else {
+            this.positionId = p.getId();
+        }
+
+        this.position = p;
     }
 
 }

@@ -63,4 +63,8 @@ public class Position {
         return managementRole;
     }
 
+    public void setPayType(String type) {
+        this.payType = type;
+    }
+
 }

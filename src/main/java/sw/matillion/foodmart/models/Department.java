@@ -42,4 +42,8 @@ public class Department {
         return employees;
     }
 
+    public void setDescription(String desc) {
+        this.description = desc;
+    }
+
 }
