@@ -45,25 +45,16 @@ public class Employee {
     @Column(name = "education_level")
     private String educationLevel;
 
-    @Column(name = "department_id", nullable = true)
-    private Integer departmentId;
-
-    @Column(name = "position_id", nullable = true)
-    private Integer positionId;
-
-    @Column(name = "supervisor_id", nullable = true)
-    private Integer supervisorId;
-
     @ManyToOne()
-    @JoinColumn(name = "department_id", insertable = false, updatable = false, nullable = false)
+    @JoinColumn(name = "department_id")
     private Department department;
 
     @ManyToOne()
-    @JoinColumn(name = "position_id", insertable = false, updatable = false, nullable = false)
+    @JoinColumn(name = "position_id")
     private Position position;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "supervisor_id", insertable = false, updatable = false, nullable = false)
+    @JoinColumn(name = "supervisor_id", nullable = true)
     private Employee supervisor;
 
     public int getId() {
@@ -74,16 +65,32 @@ public class Employee {
         return fullName;
     }
 
+    public void setFullName(String name) {
+        this.fullName = name;
+    }
+
     public String getFirstName() {
         return firstName;
+    }
+
+    public void setFirstName(String name) {
+        this.firstName = name;
     }
 
     public String getLastName() {
         return lastName;
     }
 
+    public void setLastName(String name) {
+        this.lastName = name;
+    }
+
     public String getEducationLevel() {
         return educationLevel;
+    }
+
+    public void setEducationLevel(String level) {
+        this.educationLevel = level;
     }
 
     @Nullable
@@ -91,9 +98,17 @@ public class Employee {
         return department;
     }
 
+    public void setDepartment(Department d) {
+        this.department = d;
+    }
+
     @Nullable
     public Position getPosition() {
         return position;
+    }
+
+    public void setPosition(Position p) {
+        this.position = p;
     }
 
     @Nullable
@@ -101,28 +116,8 @@ public class Employee {
         return supervisor;
     }
 
-    public void setDepartment(@Nullable Department d) {
-        if (d == null) {
-            this.departmentId = 0;
-        } else {
-            this.departmentId = d.getId();
-        }
-
-        this.department = d;
-    }
-
-    public void setEducationLevel(String level) {
-        this.educationLevel = level;
-    }
-
-    public void setPosition(@Nullable Position p) {
-        if (p == null) {
-            this.positionId = 0;
-        } else {
-            this.positionId = p.getId();
-        }
-
-        this.position = p;
+    public void setSupervisor(@Nullable Employee e) {
+        this.supervisor = e;
     }
 
 }

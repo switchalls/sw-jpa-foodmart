@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+
+    <department department_id="1" department_description="Science" />
+
+    <position position_id="1" position_title="God" pay_type="monthly" min_scale="95" max_scale="99" management_role="God" />
+    <position position_id="2" position_title="Teacher" pay_type="weekly" min_scale="50" max_scale="60" management_role="None" />
+
+    <employee
+        employee_id="2"
+        full_name="Big Head" first_name="Big" last_name="Head"
+        position_id="1" department_id="1"
+        education_level="masters"
+        />
+
+    <employee
+        employee_id="3"
+        full_name="John Doe" first_name="John" last_name="Doe"
+        position_id="2" department_id="1" supervisor_id="2"
+        education_level="degree"
+        />
+
+</dataset>

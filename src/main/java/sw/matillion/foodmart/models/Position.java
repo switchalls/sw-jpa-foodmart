@@ -1,6 +1,7 @@
 package sw.matillion.foodmart.models;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import javax.annotation.Nullable;
 import javax.persistence.Column;
@@ -8,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -33,6 +35,9 @@ public class Position {
 
     @Column(name = "management_role")
     private String managementRole;
+
+    @OneToMany(mappedBy = "position")
+    private List<Employee> employees;
 
     public int getId() {
         return id;
@@ -61,6 +66,10 @@ public class Position {
     @Nullable
     public String getManagementRole() {
         return managementRole;
+    }
+
+    public List<Employee> getEmployees() {
+        return this.employees;
     }
 
     public void setPayType(String type) {

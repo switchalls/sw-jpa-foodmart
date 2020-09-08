@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
+import com.github.springtestdbunit.TransactionDbUnitTestExecutionListener;
 
 /**
  * Basis for any test requiring JPA.
@@ -34,6 +35,7 @@ import com.github.springtestdbunit.DbUnitTestExecutionListener;
 @DataJpaTest
 @TestExecutionListeners({
     DbUnitTestExecutionListener.class,
+    TransactionDbUnitTestExecutionListener.class,
     DependencyInjectionTestExecutionListener.class })
 @RunWith(SpringRunner.class)
 public abstract class AbstractJpaRepositoryTest {

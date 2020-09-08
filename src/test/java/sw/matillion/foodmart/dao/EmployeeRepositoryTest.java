@@ -10,11 +10,16 @@ import static org.junit.Assert.assertThat;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+import javax.transaction.Transactional.TxType;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
+import com.github.springtestdbunit.annotation.ExpectedDatabase;
+import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
 
 import sw.matillion.foodmart.models.Department;
 import sw.matillion.foodmart.models.Employee;
@@ -25,6 +30,7 @@ import sw.matillion.foodmart.models.matchers.PositionMatcher;
 @DatabaseSetup("/database/employee.xml")
 public class EmployeeRepositoryTest extends AbstractJpaRepositoryTest {
 
+    // TODO - @ExpectedDatabase only detects deleted rows when transactions are disabled ??!! ; see setupDatabaseForExpectedDatabase
     // TODO - Create EmployeeMatcher
 
     private static final String DEGREE_EDUCATION = "degree";
@@ -32,17 +38,24 @@ public class EmployeeRepositoryTest extends AbstractJpaRepositoryTest {
     private static final String WEEKLY_PAY = "weekly";
 
     @Autowired
+    private DepartmentRepository departmentDao;
+
+    @Autowired
+    private PositionRepository positionDao;
+
+    @Autowired
     private EmployeeRepository testSubject;
 
     @Test
     public void shouldFindAll() {
         // Given
-        final List<Employee> result = testSubject.findAll();
 
         // When
-        assertThat(result, hasSize(3));
+        final List<Employee> result = testSubject.findAll();
 
         // Then
+        assertThat(result, hasSize(3));
+
         assertThat(result.get(0).getId(), equalTo(1));
         assertThat(result.get(0).getFullName(), nullValue(String.class));
         assertThat(result.get(0).getFirstName(), nullValue(String.class));
@@ -227,6 +240,71 @@ public class EmployeeRepositoryTest extends AbstractJpaRepositoryTest {
 
         final Employee teacher = result.get(0);
         assertThat(teacher.getId(), equalTo(3));
+    }
+
+    @ExpectedDatabase(value = "/database/employee-after-delete.xml", assertionMode = DatabaseAssertionMode.NON_STRICT)
+    @Transactional(value = TxType.NEVER)
+    @Test
+    public void shouldDeleteEmployee() {
+        // Given
+
+        // When
+        testSubject.deleteById(1);
+    }
+
+    @ExpectedDatabase(value = "/database/employee-after-insert.xml", assertionMode = DatabaseAssertionMode.NON_STRICT)
+    @Transactional(value = TxType.NEVER)
+    @Test
+    public void shouldInsertEmployee_noSupervisor() {
+        // Given
+
+        // When
+        this.testSubject.save(aJohnSmith());
+
+        // Then
+        this.setupDatabaseForExpectedDatabase();
+    }
+
+    @ExpectedDatabase(value = "/database/employee-after-insert-supervisor.xml", assertionMode = DatabaseAssertionMode.NON_STRICT)
+    @Transactional(value = TxType.NEVER)
+    @Test
+    public void shouldInsertEmployee_withSupervisor() {
+        // Given
+        final Employee newEmployee = aJohnSmith();
+        newEmployee.setSupervisor(testSubject.getOne(3));
+
+        // When
+        this.testSubject.save(newEmployee);
+
+        // Then
+        this.setupDatabaseForExpectedDatabase();
+    }
+
+    private void setupDatabaseForExpectedDatabase() {
+        // dbUnit @ExpectedDatabase does not handle auto generated id fields.
+        // You omit the id fields on the XML and use DatabaseAssertionMode.NON_STRICT
+        //
+        // But, cannot match employee.id="1" like this because it has no fields
+
+        testSubject.deleteById(1);
+    }
+
+    private Employee aJohnSmith() {
+        final List<Department> departments = departmentDao.findByDescription(SCIENCE_DEPARTMENT);
+        assertThat(departments, hasSize(1));
+
+        final List<Position> positions = positionDao.findByPayType(WEEKLY_PAY);
+        assertThat(positions, hasSize(1));
+
+        final Employee newEmployee = new Employee();
+        newEmployee.setFullName("John Smith");
+        newEmployee.setFirstName("John");
+        newEmployee.setLastName("Smith");
+        newEmployee.setEducationLevel(DEGREE_EDUCATION);
+        newEmployee.setDepartment(departments.get(0));
+        newEmployee.setPosition(positions.get(0));
+
+        return newEmployee;
     }
 
 }

@@ -1,7 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dataset>
 
+    <department />
+
     <position position_id="1" /> <!-- null values only -->
     <position position_id="2" position_title="test_title" pay_type="test_type" min_scale="1" max_scale="99" management_role="test_role" />
+
+    <employee />
 
 </dataset>

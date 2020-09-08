@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 
+import sw.matillion.foodmart.models.Employee;
 import sw.matillion.foodmart.models.Position;
 
 @DatabaseSetup("/database/position.xml")
@@ -26,12 +27,13 @@ public class PositionRepositoryTest extends AbstractJpaRepositoryTest {
     @Test
     public void shouldFindAll() {
         // Given
-        final List<Position> result = testSubject.findAll();
 
         // When
-        assertThat(result, hasSize(2));
+        final List<Position> result = testSubject.findAll();
 
         // Then
+        assertThat(result, hasSize(2));
+
         assertThat(result.get(0).getId(), equalTo(1));
         assertThat(result.get(0).getTitle(), nullValue(String.class));
         assertThat(result.get(0).getPayType(), nullValue(String.class));
@@ -45,6 +47,19 @@ public class PositionRepositoryTest extends AbstractJpaRepositoryTest {
         assertThat(result.get(1).getMinScale().doubleValue(), equalTo(1d));
         assertThat(result.get(1).getMaxScale().doubleValue(), equalTo(99d));
         assertThat(result.get(1).getManagementRole(), equalTo("test_role"));
+    }
+
+    @DatabaseSetup("/database/employee.xml")
+    @Test
+    public void shouldListEmployees() {
+        // Given
+        final Position p = testSubject.getOne(1);
+
+        // When
+        final List<Employee> result = p.getEmployees();
+
+        // Then
+        assertThat(result, hasSize(1));
     }
 
 }

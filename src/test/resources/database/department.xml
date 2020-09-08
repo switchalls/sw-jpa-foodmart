@@ -4,4 +4,8 @@
     <department department_id="1" /> <!-- null values only -->
     <department department_id="2" department_description="test_department" />
 
+    <position />
+
+    <employee />
+
 </dataset>

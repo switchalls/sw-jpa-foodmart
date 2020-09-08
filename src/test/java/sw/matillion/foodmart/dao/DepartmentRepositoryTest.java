@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 
 import sw.matillion.foodmart.models.Department;
+import sw.matillion.foodmart.models.Employee;
 
 @DatabaseSetup("/database/department.xml")
 public class DepartmentRepositoryTest extends AbstractJpaRepositoryTest {
@@ -23,17 +24,31 @@ public class DepartmentRepositoryTest extends AbstractJpaRepositoryTest {
     @Test
     public void shouldFindAll() {
         // Given
-        final List<Department> result = testSubject.findAll();
 
         // When
-        assertThat(result, hasSize(2));
+        final List<Department> result = testSubject.findAll();
 
         // Then
+        assertThat(result, hasSize(2));
+
         assertThat(result.get(0).getId(), equalTo(1));
         assertThat(result.get(0).getDescription(), nullValue(String.class));
 
         assertThat(result.get(1).getId(), equalTo(2));
         assertThat(result.get(1).getDescription(), equalTo("test_department"));
+    }
+
+    @DatabaseSetup("/database/employee.xml")
+    @Test
+    public void shouldListEmployees() {
+        // Given
+        final Department dept = testSubject.getOne(1);
+
+        // When
+        final List<Employee> result = dept.getEmployees();
+
+        // Then
+        assertThat(result, hasSize(2));
     }
 
 }
