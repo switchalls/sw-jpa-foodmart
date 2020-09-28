@@ -1,4 +1,4 @@
-package sw.matillion.foodmart.services;
+package sw.jpa.foodmart.services;
 
 import static org.hamcrest.Matchers.contains;
 import static org.junit.Assert.assertThat;
@@ -18,9 +18,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import sw.matillion.foodmart.models.Department;
-import sw.matillion.foodmart.models.Employee;
-import sw.matillion.foodmart.models.Position;
+import sw.jpa.foodmart.models.Department;
+import sw.jpa.foodmart.models.Employee;
+import sw.jpa.foodmart.models.Position;
 
 @RunWith(MockitoJUnitRunner.class)
 public class EmployeeWriterTest {

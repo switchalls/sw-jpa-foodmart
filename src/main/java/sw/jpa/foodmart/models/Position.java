@@ -1,4 +1,4 @@
-package sw.matillion.foodmart.models;
+package sw.jpa.foodmart.models;
 
 import java.math.BigDecimal;
 import java.util.List;

@@ -1,11 +1,11 @@
-package sw.matillion.foodmart.dao;
+package sw.jpa.foodmart.dao;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import sw.matillion.foodmart.models.Position;
+import sw.jpa.foodmart.models.Position;
 
 @Repository
 public interface PositionRepository extends JpaRepository<Position, Integer> {

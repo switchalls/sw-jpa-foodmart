@@ -1,4 +1,4 @@
-package sw.matillion.foodmart.dao;
+package sw.jpa.foodmart.dao;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
@@ -12,8 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 
-import sw.matillion.foodmart.models.Department;
-import sw.matillion.foodmart.models.Employee;
+import sw.jpa.foodmart.models.Department;
+import sw.jpa.foodmart.models.Employee;
 
 @DatabaseSetup("/database/department.xml")
 public class DepartmentRepositoryTest extends AbstractJpaRepositoryTest {

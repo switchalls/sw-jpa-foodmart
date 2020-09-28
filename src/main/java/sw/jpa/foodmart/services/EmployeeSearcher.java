@@ -1,4 +1,4 @@
-package sw.matillion.foodmart.services;
+package sw.jpa.foodmart.services;
 
 import java.util.Collections;
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import sw.matillion.foodmart.dao.EmployeeRepository;
-import sw.matillion.foodmart.models.Employee;
+import sw.jpa.foodmart.dao.EmployeeRepository;
+import sw.jpa.foodmart.models.Employee;
 
 @Component
 public class EmployeeSearcher {

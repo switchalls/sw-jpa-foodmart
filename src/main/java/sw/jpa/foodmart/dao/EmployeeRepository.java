@@ -1,4 +1,4 @@
-package sw.matillion.foodmart.dao;
+package sw.jpa.foodmart.dao;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import sw.matillion.foodmart.models.Employee;
+import sw.jpa.foodmart.models.Employee;
 
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {

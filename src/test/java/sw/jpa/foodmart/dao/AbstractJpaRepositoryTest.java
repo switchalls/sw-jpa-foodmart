@@ -1,4 +1,4 @@
-package sw.matillion.foodmart.dao;
+package sw.jpa.foodmart.dao;
 
 import org.junit.runner.RunWith;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -29,8 +29,8 @@ import com.github.springtestdbunit.TransactionDbUnitTestExecutionListener;
  *
  * @author stewartw
  */
-@EnableJpaRepositories("sw.matillion.foodmart.dao")
-@EntityScan("sw.matillion.foodmart.models")
+@EnableJpaRepositories("sw.jpa.foodmart.dao")
+@EntityScan("sw.jpa.foodmart.models")
 @PropertySource("classpath:jpa.properties")
 @DataJpaTest
 @TestExecutionListeners({

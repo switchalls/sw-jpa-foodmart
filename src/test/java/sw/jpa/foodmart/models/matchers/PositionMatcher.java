@@ -1,9 +1,9 @@
-package sw.matillion.foodmart.models.matchers;
+package sw.jpa.foodmart.models.matchers;
 
 import org.hamcrest.Description;
 import org.hamcrest.TypeSafeDiagnosingMatcher;
 
-import sw.matillion.foodmart.models.Position;
+import sw.jpa.foodmart.models.Position;
 
 public class PositionMatcher extends TypeSafeDiagnosingMatcher<Position> {
 

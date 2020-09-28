@@ -1,4 +1,4 @@
-# Matillion Senior Developer Test
+# JPA Hackerthon
 
 ## HackerRank Instructions
 
@@ -14,12 +14,13 @@ spring.datasource.username=technical_test
 spring.datasource.password=HopefullyProspectiveDevsDontBreakMe
 ```
 
+
 ## Running Application
 
 Usage:
 
 ```
-$ run.sh
+$ java -jar target/sw-jpa-foodmart-0.0.1-SNAPSHOT.jar
 Usage: [option] value
 Options:
 --pay, eg. Monthly
@@ -30,9 +31,9 @@ Options:
 Example searches:
 
 ```
-$ ./run.sh --pay Monthly
-$ ./run.sh --education "Graduate Degree"
-$ ./run.sh --department "Store Management"
+$ java -jar target/sw-jpa-foodmart-0.0.1-SNAPSHOT.jar --pay Monthly
+$ java -jar target/sw-jpa-foodmart-0.0.1-SNAPSHOT.jar --education "Graduate Degree"
+$ java -jar target/sw-jpa-foodmart-0.0.1-SNAPSHOT.jar --department "Store Management"
 ```
 
 ## Final Thoughts
