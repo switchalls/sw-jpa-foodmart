@@ -56,6 +56,6 @@ public class SpringBootConsoleApplication implements CommandLineRunner {
         out.println("Options:");
         out.println("--pay, eg. Monthly");
         out.println("--education, eg. Graduate Degree");
-        out.println("--department, eg. HQ General Management");
+        out.println("--department, eg. Store Management");
     }
 }
