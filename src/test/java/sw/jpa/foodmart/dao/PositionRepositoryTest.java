@@ -8,7 +8,7 @@ import static org.hamcrest.Matchers.nullValue;
 import java.math.BigDecimal;
 import java.util.List;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
@@ -25,7 +25,7 @@ public class PositionRepositoryTest extends AbstractJpaRepositoryTest {
     private PositionRepository testSubject;
 
     @Test
-    public void shouldFindAll() {
+    void shouldFindAll() {
         // Given
 
         // When
@@ -51,9 +51,9 @@ public class PositionRepositoryTest extends AbstractJpaRepositoryTest {
 
     @DatabaseSetup("/database/employee.xml")
     @Test
-    public void shouldListEmployees() {
+    void shouldListEmployees() {
         // Given
-        final Position p = testSubject.getOne(1);
+        final Position p = testSubject.getById(1);
 
         // When
         final List<Employee> result = p.getEmployees();

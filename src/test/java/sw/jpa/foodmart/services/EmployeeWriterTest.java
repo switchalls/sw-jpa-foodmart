@@ -10,19 +10,19 @@ import static org.mockito.Mockito.when;
 import java.io.PrintStream;
 import java.util.Arrays;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import sw.jpa.foodmart.models.Department;
 import sw.jpa.foodmart.models.Employee;
 import sw.jpa.foodmart.models.Position;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith( MockitoExtension.class)
 public class EmployeeWriterTest {
 
     private static final String EXPECTED_LINE_SEPERATOR = "+------------------------------+---------------------------+------------+-----------------";
@@ -49,7 +49,7 @@ public class EmployeeWriterTest {
     private ArgumentCaptor<String> varargsCaptor;
 
     @Test
-    public void shouldWriteEmployees() {
+    void shouldWriteEmployees() {
         // Given
         this.setupEmployee();
 
@@ -75,22 +75,22 @@ public class EmployeeWriterTest {
 
     private void setupEmployee() {
         when(mockDepartment.getDescription())
-        .thenReturn("test-department");
+            .thenReturn("test-department");
 
         when(mockPosition.getPayType())
-        .thenReturn("test-pay-type");
+            .thenReturn("test-pay-type");
 
         when(mockEmployee.getDepartment())
-        .thenReturn(mockDepartment);
+            .thenReturn(mockDepartment);
 
         when(mockEmployee.getEducationLevel())
-        .thenReturn("test-education-level");
+            .thenReturn("test-education-level");
 
         when(mockEmployee.getFullName())
-        .thenReturn("test-full-name");
+            .thenReturn("test-full-name");
 
         when(mockEmployee.getPosition())
-        .thenReturn(mockPosition);
+            .thenReturn(mockPosition);
     }
 
 }

@@ -12,20 +12,20 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import sw.jpa.foodmart.dao.EmployeeRepository;
 import sw.jpa.foodmart.models.Employee;
 import sw.jpa.foodmart.services.EmployeeSearcher.Type;
 
-@RunWith(MockitoJUnitRunner.class)
-public class EmployeeSearcherTest {
+@ExtendWith( MockitoExtension.class)
+class EmployeeSearcherTest {
 
     @Mock
     private EmployeeRepository mockEmployeeRepository;
@@ -37,7 +37,7 @@ public class EmployeeSearcherTest {
     private ArgumentCaptor<String> stringCaptor;
 
     @Test
-    public void shouldFindSearchType() {
+    void shouldFindSearchType() {
         // Given
 
         // When
@@ -48,7 +48,7 @@ public class EmployeeSearcherTest {
     }
 
     @Test
-    public void shouldReturnUnknownWhenCannotFindSearchType() {
+    void shouldReturnUnknownWhenCannotFindSearchType() {
         // Given
 
         // When
@@ -59,7 +59,7 @@ public class EmployeeSearcherTest {
     }
 
     @Test
-    public void shouldFindByDepartment() {
+    void shouldFindByDepartment() {
         // Given
         final List<Employee> expected = new ArrayList<>();
 
@@ -78,7 +78,7 @@ public class EmployeeSearcherTest {
     }
 
     @Test
-    public void shouldFindByType_Department() {
+    void shouldFindByType_Department() {
         // Given
         final List<Employee> expected = new ArrayList<>();
 
@@ -97,7 +97,7 @@ public class EmployeeSearcherTest {
     }
 
     @Test
-    public void shouldFindByEducationLevel() {
+    void shouldFindByEducationLevel() {
         // Given
         final List<Employee> expected = new ArrayList<>();
 
@@ -116,7 +116,7 @@ public class EmployeeSearcherTest {
     }
 
     @Test
-    public void shouldFindByType_EducationLevel() {
+    void shouldFindByType_EducationLevel() {
         // Given
         final List<Employee> expected = new ArrayList<>();
 
@@ -135,7 +135,7 @@ public class EmployeeSearcherTest {
     }
 
     @Test
-    public void shouldFindByPayType() {
+    void shouldFindByPayType() {
         // Given
         final List<Employee> expected = new ArrayList<>();
 
@@ -154,7 +154,7 @@ public class EmployeeSearcherTest {
     }
 
     @Test
-    public void shouldFindByType_PayType() {
+    void shouldFindByType_PayType() {
         // Given
         final List<Employee> expected = new ArrayList<>();
 
@@ -173,7 +173,7 @@ public class EmployeeSearcherTest {
     }
 
     @Test
-    public void shouldFindByType_Unknown() {
+    void shouldFindByType_Unknown() {
         // Given
 
         // When

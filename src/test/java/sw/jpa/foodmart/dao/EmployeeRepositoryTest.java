@@ -13,7 +13,7 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 import javax.transaction.Transactional.TxType;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 
@@ -28,7 +28,7 @@ import sw.jpa.foodmart.models.matchers.DepartmentMatcher;
 import sw.jpa.foodmart.models.matchers.PositionMatcher;
 
 @DatabaseSetup("/database/employee.xml")
-public class EmployeeRepositoryTest extends AbstractJpaRepositoryTest {
+class EmployeeRepositoryTest extends AbstractJpaRepositoryTest {
 
     // TODO - @ExpectedDatabase only detects deleted rows when transactions are disabled ??!! ; see setupDatabaseForExpectedDatabase
     // TODO - Create EmployeeMatcher
@@ -47,7 +47,7 @@ public class EmployeeRepositoryTest extends AbstractJpaRepositoryTest {
     private EmployeeRepository testSubject;
 
     @Test
-    public void shouldFindAll() {
+    void shouldFindAll() {
         // Given
 
         // When
@@ -93,7 +93,7 @@ public class EmployeeRepositoryTest extends AbstractJpaRepositoryTest {
     }
 
     @Test
-    public void shouldFindByScienceDepartment() {
+    void shouldFindByScienceDepartment() {
         // Given
 
         // When
@@ -104,7 +104,7 @@ public class EmployeeRepositoryTest extends AbstractJpaRepositoryTest {
     }
 
     @Test
-    public void shouldFindNothingWhenWrongDepartment() {
+    void shouldFindNothingWhenWrongDepartment() {
         // Given
 
         // When
@@ -115,7 +115,7 @@ public class EmployeeRepositoryTest extends AbstractJpaRepositoryTest {
     }
 
     @Test
-    public void shouldFindByEducationLevel() {
+    void shouldFindByEducationLevel() {
         // Given
 
         // When
@@ -129,7 +129,7 @@ public class EmployeeRepositoryTest extends AbstractJpaRepositoryTest {
     }
 
     @Test
-    public void shouldFindByPayType() {
+    void shouldFindByPayType() {
         // Given
 
         // When
@@ -143,7 +143,7 @@ public class EmployeeRepositoryTest extends AbstractJpaRepositoryTest {
     }
 
     @Test
-    public void shouldFindEmployeeWhenUsingAndExpression() {
+    void shouldFindEmployeeWhenUsingAndExpression() {
         // Given
 
         // When
@@ -160,7 +160,7 @@ public class EmployeeRepositoryTest extends AbstractJpaRepositoryTest {
     }
 
     @Test
-    public void shouldFindMultipleEmployeesWhenUsingOrExpression() {
+    void shouldFindMultipleEmployeesWhenUsingOrExpression() {
         // Given
 
         // When
@@ -182,7 +182,7 @@ public class EmployeeRepositoryTest extends AbstractJpaRepositoryTest {
     }
 
     @Test
-    public void shouldFindEmployeeWhenUsingLikeExpression() {
+    void shouldFindEmployeeWhenUsingLikeExpression() {
         // Given
 
         // When
@@ -199,7 +199,7 @@ public class EmployeeRepositoryTest extends AbstractJpaRepositoryTest {
     }
 
     @Test
-    public void shouldFindEmployeeWhenUsingQueryByExample_AllFields() {
+    void shouldFindEmployeeWhenUsingQueryByExample_AllFields() {
         // Given
         final Department exampleDepartment = new Department();
         exampleDepartment.setDescription(SCIENCE_DEPARTMENT);
@@ -223,7 +223,7 @@ public class EmployeeRepositoryTest extends AbstractJpaRepositoryTest {
     }
 
     @Test
-    public void shouldFindEmployeeWhenUsingQueryByExample_SomeFields() {
+    void shouldFindEmployeeWhenUsingQueryByExample_SomeFields() {
         // Given
         final Position examplePosition = new Position();
         examplePosition.setPayType(WEEKLY_PAY);
@@ -245,7 +245,7 @@ public class EmployeeRepositoryTest extends AbstractJpaRepositoryTest {
     @ExpectedDatabase(value = "/database/employee-after-delete.xml", assertionMode = DatabaseAssertionMode.NON_STRICT)
     @Transactional(value = TxType.NEVER)
     @Test
-    public void shouldDeleteEmployee() {
+    void shouldDeleteEmployee() {
         // Given
 
         // When
@@ -255,7 +255,7 @@ public class EmployeeRepositoryTest extends AbstractJpaRepositoryTest {
     @ExpectedDatabase(value = "/database/employee-after-insert.xml", assertionMode = DatabaseAssertionMode.NON_STRICT)
     @Transactional(value = TxType.NEVER)
     @Test
-    public void shouldInsertEmployee_noSupervisor() {
+    void shouldInsertEmployee_noSupervisor() {
         // Given
 
         // When
@@ -268,10 +268,10 @@ public class EmployeeRepositoryTest extends AbstractJpaRepositoryTest {
     @ExpectedDatabase(value = "/database/employee-after-insert-supervisor.xml", assertionMode = DatabaseAssertionMode.NON_STRICT)
     @Transactional(value = TxType.NEVER)
     @Test
-    public void shouldInsertEmployee_withSupervisor() {
+    void shouldInsertEmployee_withSupervisor() {
         // Given
         final Employee newEmployee = aJohnSmith();
-        newEmployee.setSupervisor(testSubject.getOne(3));
+        newEmployee.setSupervisor(testSubject.getById(3));
 
         // When
         this.testSubject.save(newEmployee);

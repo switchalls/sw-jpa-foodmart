@@ -7,7 +7,7 @@ import static org.hamcrest.Matchers.nullValue;
 
 import java.util.List;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
@@ -16,13 +16,13 @@ import sw.jpa.foodmart.models.Department;
 import sw.jpa.foodmart.models.Employee;
 
 @DatabaseSetup("/database/department.xml")
-public class DepartmentRepositoryTest extends AbstractJpaRepositoryTest {
+class DepartmentRepositoryTest extends AbstractJpaRepositoryTest {
 
     @Autowired
     private DepartmentRepository testSubject;
 
     @Test
-    public void shouldFindAll() {
+    void shouldFindAll() {
         // Given
 
         // When
@@ -40,9 +40,9 @@ public class DepartmentRepositoryTest extends AbstractJpaRepositoryTest {
 
     @DatabaseSetup("/database/employee.xml")
     @Test
-    public void shouldListEmployees() {
+    void shouldListEmployees() {
         // Given
-        final Department dept = testSubject.getOne(1);
+        final Department dept = testSubject.getById( 1 );
 
         // When
         final List<Employee> result = dept.getEmployees();

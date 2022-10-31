@@ -1,12 +1,12 @@
 package sw.jpa.foodmart.dao;
 
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.test.context.TestExecutionListeners;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
@@ -23,10 +23,6 @@ import com.github.springtestdbunit.TransactionDbUnitTestExecutionListener;
  * Data source automatically configured by {@code spring.datasource.*} properties in {@code jpa.properties}.
  * </p>
  *
- * <p>
- * Requires SpingBootConfiguration ; see {@link TestSpringBootConfiguration}
- * </p>
- *
  * @author stewartw
  */
 @EnableJpaRepositories("sw.jpa.foodmart.dao")
@@ -37,6 +33,6 @@ import com.github.springtestdbunit.TransactionDbUnitTestExecutionListener;
     DbUnitTestExecutionListener.class,
     TransactionDbUnitTestExecutionListener.class,
     DependencyInjectionTestExecutionListener.class })
-@RunWith(SpringRunner.class)
-public abstract class AbstractJpaRepositoryTest {
+@ExtendWith( SpringExtension.class)
+abstract class AbstractJpaRepositoryTest {
 }

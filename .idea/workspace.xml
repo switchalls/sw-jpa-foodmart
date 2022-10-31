@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c62caaf1-6fe2-4cdc-bbdb-166955982c55" name="Changes" comment="Build changes&#10;&#10;Hackerthon database no longer available ; replaced with H2&#10;&#10;Replaced maven with gradle&#10;&#10;Updated dependencies, eg. dbunit&#10;&#10;Updated documentation" />
+    <list default="true" id="c62caaf1-6fe2-4cdc-bbdb-166955982c55" name="Changes" comment="Build changes&#10;&#10;Hackerthon database no longer available ; replaced with H2&#10;&#10;Replaced maven with gradle&#10;&#10;Updated dependencies, eg. dbunit&#10;&#10;Updated documentation">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foodmart-db.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/foodmart-db.mv.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/sw/jpa/foodmart/dao/AbstractJpaRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sw/jpa/foodmart/dao/AbstractJpaRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/sw/jpa/foodmart/dao/DepartmentRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sw/jpa/foodmart/dao/DepartmentRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/sw/jpa/foodmart/dao/EmployeeRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sw/jpa/foodmart/dao/EmployeeRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/sw/jpa/foodmart/dao/PositionRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sw/jpa/foodmart/dao/PositionRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/sw/jpa/foodmart/services/EmployeeSearcherTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sw/jpa/foodmart/services/EmployeeSearcherTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/sw/jpa/foodmart/services/EmployeeWriterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sw/jpa/foodmart/services/EmployeeWriterTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -70,30 +80,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "TF_FMT": "false",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "//wsl$/Debian/home/stewartw/My Projects/sw-jpa-foodmart/docs",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "SDKs",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "vcs.Git",
-    "spring.configuration.checksum": "80a3aac8eb6b4ff8a3afc30b1bb8e7e3"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;TF_FMT&quot;: &quot;false&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;//wsl$/Debian/home/stewartw/My Projects/sw-jpa-foodmart/docs&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;80a3aac8eb6b4ff8a3afc30b1bb8e7e3&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "h2"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;h2&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="\\wsl$\Debian\home\stewartw\My Projects\sw-jpa-foodmart\docs" />
@@ -107,6 +117,29 @@
     </key>
   </component>
   <component name="RunManager" selected="Gradle.sw-jpa-foodmart [build]">
+    <configuration name="DepartmentRepositoryTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;sw.jpa.foodmart.dao.DepartmentRepositoryTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <configuration name="EmployeeWriterTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -193,27 +226,6 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="sw-jpa-foodmart [testClasses]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="testClasses" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
     <configuration name="SpringBootConsoleApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="sw-jpa-foodmart.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="sw.jpa.foodmart.SpringBootConsoleApplication" />
@@ -225,9 +237,9 @@
       <list>
         <item itemvalue="Gradle.sw-jpa-foodmart [build]" />
         <item itemvalue="Gradle.sw-jpa-foodmart [clean]" />
-        <item itemvalue="Gradle.sw-jpa-foodmart [buildDependents]" />
-        <item itemvalue="Gradle.sw-jpa-foodmart [testClasses]" />
+        <item itemvalue="Gradle.DepartmentRepositoryTest" />
         <item itemvalue="Gradle.EmployeeWriterTest" />
+        <item itemvalue="Gradle.sw-jpa-foodmart [buildDependents]" />
       </list>
     </recent_temporary>
   </component>
@@ -247,7 +259,9 @@
       <workItem from="1666963253422" duration="351000" />
       <workItem from="1666963650280" duration="6319000" />
       <workItem from="1666970014790" duration="7410000" />
-      <workItem from="1666984342199" duration="255000" />
+      <workItem from="1666984342199" duration="507000" />
+      <workItem from="1667209681459" duration="109000" />
+      <workItem from="1667239106626" duration="562000" />
     </task>
     <task id="LOCAL-00001" summary="Build changes&#10;&#10;Hackerthon database no longer available ; replaced with H2&#10;&#10;Replaced maven with gradle&#10;&#10;Updated documentation">
       <created>1666982283552</created>
@@ -270,7 +284,21 @@
       <option name="project" value="LOCAL" />
       <updated>1666984515533</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Build changes&#10;&#10;Hackerthon database no longer available ; replaced with H2&#10;&#10;Replaced maven with gradle&#10;&#10;Updated dependencies, eg. dbunit&#10;&#10;Updated documentation">
+      <created>1666984608576</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1666984608576</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Build changes&#10;&#10;Hackerthon database no longer available ; replaced with H2&#10;&#10;Replaced maven with gradle&#10;&#10;Updated dependencies, eg. dbunit&#10;&#10;Updated documentation">
+      <created>1666984718068</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1666984718068</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
