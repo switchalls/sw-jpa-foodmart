@@ -10,6 +10,6 @@ import sw.jpa.foodmart.models.Department;
 @Repository
 public interface DepartmentRepository extends JpaRepository<Department, Integer> {
 
-    List<Department> findByDescription(String desc);
+    List<Department> findByDescription(String description);
 
 }

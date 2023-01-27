@@ -6,4 +6,8 @@ see [documentation](docs/index.md)
 
 ## TODO
 
-1. Stop `schema.sql` having to use `identiy (start with ...` to work around sequence generators not incrementing when `dbunit` sets up database
+1. Stop `schema.sql` using `identiy (start with ...` to work around sequence generators not incrementing when `dbunit` sets up database
+
+2. Fix intellij freezing when building MockMVC tests
+
+3. Upgrade to spring-boot 3

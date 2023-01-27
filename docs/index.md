@@ -17,10 +17,12 @@ The hackerthon database is no longer available and has been replaced with a loca
 
 See [guide](./h2-setup.md)
 
-## Build Changes
+## Enable REST API
 
-The hackerthon was implemented using [maven](https://maven.apache.org/) ; see [pom](./pom.xml)
+See [What is REST?](./what-is-rest.md)
 
-Current versions of `maven` (eg. `3.6.0`) cannot be run against JDK 17
+Tutorial for converting `console` application into a REST API
 
-`maven` has been replaced with [gradle](https://gradle.org/)
+* [Create Web Application](add-restapi/web-application.md)
+* [Spring Data REST](add-restapi/spring-data-rest.md)
+* [MockMVC](add-restapi/mockmvc.md)

@@ -1,9 +1,8 @@
+.idea
 .gradle
+.mvn
 build/
 gradle/
-
-.mvn
 target/
-
 *.log
-footmart-db.mv.db
+

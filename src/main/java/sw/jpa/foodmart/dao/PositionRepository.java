@@ -10,6 +10,6 @@ import sw.jpa.foodmart.models.Position;
 @Repository
 public interface PositionRepository extends JpaRepository<Position, Integer> {
 
-    List<Position> findByPayType(String type);
+    List<Position> findByPayType(String payType);
 
 }
