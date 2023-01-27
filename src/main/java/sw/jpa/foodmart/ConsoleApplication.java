@@ -16,10 +16,10 @@ import sw.jpa.foodmart.services.EmployeeSearcher.Type;
 
 @SpringBootApplication
 @ComponentScan
-public class SpringBootConsoleApplication implements CommandLineRunner {
+public class ConsoleApplication implements CommandLineRunner {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringBootConsoleApplication.class, args);
+        SpringApplication.run( ConsoleApplication.class, args);
     }
 
     @Autowired
@@ -29,7 +29,7 @@ public class SpringBootConsoleApplication implements CommandLineRunner {
     private EmployeeWriter employeeWriter;
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         final Type searchType = getSearchType(args);
 
         if (searchType == Type.UNKNOWN) {

@@ -6,3 +6,4 @@ gradle/
 target/
 
 *.log
+footmart-db.mv.db

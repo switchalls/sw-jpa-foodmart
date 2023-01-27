@@ -45,7 +45,7 @@ class EmployeeRepositoryTest extends AbstractJpaRepositoryTest {
 
     @Autowired
     private EmployeeRepository testSubject;
-
+    
     @Test
     void shouldFindAll() {
         // Given
